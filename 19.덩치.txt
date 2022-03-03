@@ -1,0 +1,58 @@
+import java.util.*
+import java.io.*
+
+
+fun main() {
+    val file: File = File("C:\\Users\\HAYOUNG\\IdeaProjects\\Study\\src\\text7.txt")
+    if (!file.exists()) println("파일을 확인 바랍니다.")
+    val scan = Scanner(file)
+    val n = scan.nextInt()
+    val arr = Array(n) { Array(2) { 0 } }
+    var arr_cnt = Array(n) { 0 }
+
+    for (i in 0 until 5) {
+        for (j in 0..1) {
+            arr[i][j] = scan.nextInt()
+        }
+    }
+
+    arr_cnt = solution(arr, arr_cnt)
+
+    for (i in arr_cnt.indices) {
+        println(arr_cnt[i])
+    }
+}
+
+fun solution(arr: Array<Array<Int>>, arr_cnt: Array<Int>): Array<Int> {
+    var cnt = 1
+    var cnt_real = 1
+    while (cnt_real <= arr_cnt.size){
+        var max_i = 0
+        var max_x = 0
+        var max_y = 0
+        for (i in 0 until 5) {
+            if (arr_cnt[i] == 0)
+                val compare_x = arr[i][0]
+                if (max_x < compare_x) {
+                    max_i = i
+                    max_x = arr[i][0]
+                    max_y = arr[i][1]
+                }
+        }
+        for (i in 0 until 5) {
+            if (max_i != i && arr_cnt[i] == 0) {
+                val compare_y = arr[i][1]
+                if (max_y < compare_y) {
+                    arr_cnt[i] = cnt
+                    ++cnt_real
+                }
+            }else{
+                arr_cnt[max_i] = cnt
+            }
+        }
+        cnt++
+        cnt_real++
+        if (cnt < cnt_real) cnt = cnt_real
+    }
+    return arr_cnt
+}

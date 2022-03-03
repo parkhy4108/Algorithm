@@ -1,0 +1,30 @@
+import java.io.*
+
+fun main() {
+    val path = "C:\\Users\\HAYOUNG\\IdeaProjects\\Study\\src\\text13.txt"
+//    val file: File = File(path)
+//    if (!file.exists()) println("파일을 확인 바랍니다.")
+//    val scan = Scanner(file)
+//    val n = scan.nextLine()
+//    val inputStream : InputStream = fi.inputStream()
+    val bufferReader : BufferedReader = File(path).bufferedReader()
+//    val inputnum= bufferReader.readLine().toInt()
+    val arr = Array(2){""}
+    var cnt = 0
+    for(i in 0 until 2){
+        arr[i] = bufferReader.readLine()
+        println(arr[i])
+    }
+    for(k in 0..1){
+        val arr_c = CharArray(arr[k].length)
+        for(i in 0 until arr[k].length){
+            var item = arr[k][i].code
+            if(item in 65..77 || item in 97..109) item +=13
+            else if(item in 78..90 || item in 110..122 ) item-=13
+            else arr_c[i] = item.toChar()
+            arr_c[i] = item.toChar()
+            print(arr_c[i])
+        }
+        println()
+    }
+}

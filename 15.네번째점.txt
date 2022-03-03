@@ -1,0 +1,24 @@
+import java.util.*
+import java.io.*
+
+fun main() {
+    val file: File = File("C:\\Users\\HAYOUNG\\IdeaProjects\\Study\\src\\text5.txt")
+    if (!file.exists())println("파일을 확인 바랍니다.")
+    val scan = Scanner(file)
+    val arr  = Array(8){0}
+    var findnum = 0
+    for(testcase in 0 until 2){
+        for(index in 0 until 6){
+            val input = scan.nextInt()
+            arr[index]=input
+        }
+        for (i in 0..1) {
+            findnum = if (arr[i] == arr[i + 2]) arr[i + 4]
+            else {
+                if (arr[i] == arr[i + 4]) arr[i + 2] else arr[i]
+            }
+            arr[i + 6] = findnum
+        }
+        println("${arr[6]} ${arr[7]}")
+    }
+}

@@ -1,0 +1,48 @@
+import sun.rmi.runtime.Log
+import java.util.*
+import java.io.*
+import java.util.logging.Logger
+import kotlin.collections.ArrayList
+
+
+fun main() {
+    val file: File = File("C:\\Users\\HAYOUNG\\IdeaProjects\\Study\\src\\text11.txt")
+    if (!file.exists()) println("파일을 확인 바랍니다.")
+    val scan = Scanner(file)
+    val n = scan.nextLine()
+    val num = Integer.parseInt(n)
+    val arr = Array(num){Array(3){""}}
+    var cnt = 0
+    println("정렬 전")
+    for (i in 0 until num){
+        val str = scan.nextLine()
+        val info = str.split(" ")
+        arr[i][0] = info[0]
+        arr[i][1] = info[1]
+        arr[i][2] = cnt++.toString()
+        println("${arr[i][0]} ${arr[i][1]} ${arr[i][2]}")
+
+    }
+    println("정렬 후")
+    var min = arr[0][0]
+    var min_i = 0
+    for(i in 0 until num){
+        for(j in i until num){
+            if(arr[j][0]<min){
+                min = arr[j][0]
+                min_i = j
+            }else if(arr[j][0]==min){
+                if(arr[j][2]<arr[min_i][2]) {
+                    min_i = j
+                }
+            }
+        }
+        val temp = arr[i]
+        arr[i] = arr[min_i]
+        arr[min_i] = temp
+    }
+    for(i in 0 until num){
+        println("${arr[i][0]} ${arr[i][1]}")
+    }
+
+}

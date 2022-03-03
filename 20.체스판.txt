@@ -1,0 +1,53 @@
+import sun.rmi.runtime.Log
+import java.util.*
+import java.io.*
+import java.util.logging.Logger
+
+
+
+fun main() {
+    val file: File = File("C:\\Users\\HAYOUNG\\IdeaProjects\\Study\\src\\text8.txt")
+    if (!file.exists()) println("파일을 확인 바랍니다.")
+    val scan = Scanner(file)
+    val arr_W = Array(8){""}
+    val arr_B = Array(8){""}
+
+    for(i in 0 until 8){
+        if(i%2==0){
+            arr_W[i] = "WBWBWBWB"
+            arr_B[i] = "BWBWBWBW"
+        }else {
+            arr_W[i] = "BWBWBWBW"
+            arr_B[i] = "WBWBWBWB"
+        }
+    }
+    
+    val height = scan.nextInt()
+    val width = scan.nextInt()
+    println("$height $width")
+    val num3 = scan.nextLine()
+    val arr = Array(height) { "" }
+    for (i in 0 until height) {
+        val str = scan.nextLine()
+        arr[i] = str
+    }
+    var min = 10000
+    for(k in 0 ..height-8){    // 0-2 k = 0 1 2
+        for (l in 0..width-8){ // 0-5 l= 0 1 2 3 4 5
+            var cnt_W = 0
+            var cnt_B = 0
+            for (x in k .. k+7){        //k=0,1,2  i = 0-7 , 1-8 , 2-9
+                for(y in l ..l+7 ){    //l=0,1,2,3,4,5   j = 0-7 , 1-8 , 2-9 , 3-10 , 4-11 , 5-12
+                    if(arr[x][y]!=arr_W[x-k][y-l]) ++cnt_W
+                    if(arr[x][y]!=arr_B[x-k][y-l]) ++cnt_B
+                }
+            }
+            if(cnt_B <= cnt_W) {
+                if (min>cnt_B) min = cnt_B
+            }else{
+                if (min>cnt_W) min = cnt_W
+            }
+        }
+    }
+    println(min)
+}

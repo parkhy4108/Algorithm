@@ -1,0 +1,31 @@
+import sun.rmi.runtime.Log
+import java.util.*
+import java.io.*
+import java.util.logging.Logger
+import kotlin.collections.ArrayList
+
+fun main() {
+    val path = "C:\\Users\\HAYOUNG\\IdeaProjects\\Study\\src\\text12.txt"
+//    val file: File = File(path)
+//    if (!file.exists()) println("파일을 확인 바랍니다.")
+//    val scan = Scanner(file)
+//    val n = scan.nextLine()
+//    val inputStream : InputStream = fi.inputStream()
+    val bufferReader : BufferedReader = File(path).bufferedReader()
+    val inputnum= bufferReader.readLine().toInt()
+    val arr = Array(inputnum){""}
+    for(i in 0 until inputnum){
+        arr[i] = bufferReader.readLine()
+        println(arr[i])
+    }
+    for(k in 0 until inputnum) {
+        var cnt = 0
+        for (i in 0 until arr[k].length) {
+            val item = arr[k][i]
+            if (item == '(') ++cnt
+            else --cnt
+        }
+        if(cnt==0) println("YES")
+        else println("NO")
+    }
+}

@@ -1,0 +1,46 @@
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.*;
+
+public class Study {
+	public static void main(String[] args) {
+		try {
+			Scanner scanner = new Scanner(new File("C:\\Users\\HAYOUNG\\eclipse-workspace\\Study\\src\\text4.txt"));
+			ArrayList<Object> arr = new ArrayList<Object>();
+			for(int i=0;i<5;++i) {
+				int num = scanner.nextInt();
+				int result = count_num(num);
+				arr.add(result);
+			}
+			
+			for(int i =0; i<arr.size();++i) {
+				System.out.println(arr.get(i));
+			}
+			
+		} catch (FileNotFoundException e) {
+// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public static int count_num(int num) {
+		int result=0;
+		for(int i=1;i<=num;++i) {
+			if(i<100) result +=1;
+			else {
+				String s_num=Integer.toString(i);
+				result += check_num(s_num);
+			}
+		}
+		
+		return result;
+	}
+	
+	public static int check_num(String num) {
+		int num0=Character.getNumericValue(num.charAt(0));
+		int num1=Character.getNumericValue(num.charAt(1));
+		int num2=Character.getNumericValue(num.charAt(2));
+		if((num0-num1)==(num1-num2)) return 1;
+		return 0;
+	}
+}

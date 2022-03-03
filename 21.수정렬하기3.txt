@@ -1,0 +1,24 @@
+import sun.rmi.runtime.Log
+import java.util.*
+import java.io.*
+import java.util.logging.Logger
+
+
+fun main() {
+    val file: File = File("C:\\Users\\HAYOUNG\\IdeaProjects\\Study\\src\\text9.txt")
+    if (!file.exists()) println("파일을 확인 바랍니다.")
+    val scan = Scanner(file)
+    var arr = Array(scan.nextInt()) { 0 }
+    for(i in arr.indices) arr[i]=scan.nextInt()
+
+    for(i in arr.indices){
+        for(j in i until arr.size){
+            if (arr[i]>=arr[j]){  
+                val temp = arr[i] 
+                arr[i] = arr[j]   
+                arr[j]=temp       
+            }
+        }
+    }
+    for(i in arr.indices) println(arr[i])
+}

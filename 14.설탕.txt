@@ -1,0 +1,33 @@
+import java.util.*
+import java.io.*
+
+fun main() {
+    val file: File = File("C:\\Users\\HAYOUNG\\IdeaProjects\\Study\\src\\text3.txt")
+    if (!file.exists())println("파일을 확인 바랍니다.")
+    val scan: Scanner = Scanner(file)
+    val testcase: Int = 10
+    var result = 0
+    for (i in 0untiltestcase) {
+        val num: Int = scan.nextInt()
+        result =solution(num)
+println(result)
+    }
+}
+
+fun solution(num: Int): Int {
+    var result = 0
+    val cnt5: Int = num / 5
+    var x = 0
+    if(num%5==0) result = cnt5
+    else{
+        for (i in cnt5downTo(0)) {
+            x = num - 5 * i
+            if (x % 3 == 0) {
+                return i+ x/3
+            }
+        }
+        result = -1
+    }
+    return result
+}
+

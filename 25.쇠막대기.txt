@@ -1,0 +1,68 @@
+import java.util.*
+import java.io.*
+
+val MAX_SIZE = 100
+var top=-1
+var STACK = arrayOfNulls<Char>(MAX_SIZE)
+
+fun main() {
+    val path = "C:\\Users\\HAYOUNG\\IdeaProjects\\Study\\src\\text13.txt"
+    val bufferReader : BufferedReader = File(path).bufferedReader()
+    val inputnum= bufferReader.readLine().toInt()
+    val arr = Array(inputnum){""}
+
+    for(i in 0 until inputnum){
+        arr[i] = bufferReader.readLine()
+        println(arr[i])
+    }
+    
+    for(k in 0 until inputnum) {
+        val razer = Array(10){0}
+        init()
+        var result = 0
+        var i=0
+        while( i<arr[k].length ){
+            val cur_data = arr[k][i]
+            var next_data : Char? =null
+            if (i!=arr[k].length-1) next_data = arr[k][i+1]
+            if(cur_data=='(') {
+                if (next_data=='(') push(cur_data) 
+                else{
+                    if (top!=-1){ for (j in 0..top) { razer[top]+=1 }
+                    }
+                    ++i
+                }
+            }else if(cur_data==')'){
+                result+=(razer[top]+1)
+                razer[top]=0
+                pop()
+            }
+            ++i
+        }
+        println(result)
+    }
+}
+
+fun init() {
+    top=-1
+}
+
+fun isempty() : Boolean {
+    if (top==-1) return true
+    return false
+}
+
+fun isfull() : Boolean{
+    if(top>=MAX_SIZE-1) return true
+    return false
+}
+
+fun push(data : Char) {
+    if(!isfull()) STACK[++top] = data
+}
+
+fun pop() : Char? {
+    var data :Char? = null
+    if (!isempty()) data=STACK[top--]
+    return data
+}

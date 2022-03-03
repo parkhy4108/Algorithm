@@ -1,0 +1,34 @@
+fun main() {
+    val file: File = File("C:\\Users\\HAYOUNG\\IdeaProjects\\Study\\src\\text10.txt")
+    if (!file.exists()) println("파일을 확인 바랍니다.")
+    val scan = Scanner(file)
+    val n = scan.nextInt()
+    val arr = Array(n){Array(2){0}}
+    for (i in 0 until n){
+        for (j in 0..1){
+            arr[i][j] = scan.nextInt()
+        }
+    }
+    for(k in 0 until n){
+        var min = 10000000
+        var min_i = 0
+        for(i in k until n){
+            if (arr[i][0]<min){
+                min = arr[i][0]
+                min_i = i
+            }else if(arr[i][0]==min){
+                if(arr[i][1] < arr[min_i][1]) {
+                    min = arr[i][1]
+                    min_i = i
+                }
+            }
+        }
+        val arr_temp = arr[k]
+        arr[k]= arr[min_i]
+        arr[min_i] = arr_temp
+    }
+
+    for(i in 0 until n){
+        println( "${arr[i][0]} ${arr[i][1]}")
+    }
+}

@@ -1,0 +1,48 @@
+import java.util.*
+import java.io.*
+
+fun main() {
+    val file: File = File("C:\\Users\\HAYOUNG\\IdeaProjects\\Study\\src\\text1.txt")
+    if (!file.exists()) println("파일을 확인 바랍니다.")
+    val scan: Scanner = Scanner(file)
+    for (i in 0..2){
+        val str: String = scan.nextLine()
+        val result: Int = solution(str)
+        println(result)
+    }
+
+}
+fun arr_strtoint(str : String) : Array<Int> {
+    val arr = str.split(" ")
+    val numStr = Array<Int>(3) { 0 }
+    val result = 0
+    for (i in arr.indices) {
+        numStr[i] = Integer.parseInt(arr[i])
+    }
+    return numStr
+}
+fun solution(str:String): Int {
+    val numStr = arr_strtoint(str)
+    val plus: Int = numStr[0]
+    val minus: Int = numStr[1]
+    val goal: Int = numStr[2]
+    var location : Int = 0
+    var cnt = 0
+    while (true){
+        location +=plus
+        cnt++
+        if (location<goal) location -= minus
+        else break
+    }
+    return cnt
+}
+
+// 2 1 5 -> split( 공백으로 자르기 ) -> 2, 1, 5
+// 2 1 5
+// 0+2 = 2 < 5 cnt=0+1=1
+// 2-1 = 1
+// 1+2 = 3 < 5 cnt=1+1=2
+// 3-1 = 2
+// 2+2 = 4 < 5 cnt=2+1=3
+// 2-1 = 3
+// 3+2 = 5 = 5 cnt=3+1=4

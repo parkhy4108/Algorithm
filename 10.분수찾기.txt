@@ -1,0 +1,23 @@
+fun main() {
+    val number : Int = 34
+    solution(number)
+}
+
+fun solution (num : Int): Unit {
+    var temp : Int = num
+    val result :Int = 0
+    var n : Int = 1
+    while (true){
+        temp -= n
+        if (temp>0) ++n
+        else break
+    }
+    val cnt :Int = n+temp
+    val x : Int = (n+1)-cnt
+    if(n%2==0){
+        println("$cnt/$x")
+    }
+    else{
+        println("$x/$cnt")
+    }
+}

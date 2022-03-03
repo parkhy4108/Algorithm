@@ -1,0 +1,43 @@
+import java.util.*
+import java.io.*
+
+fun main() {
+    val file: File = File("C:\\Users\\HAYOUNG\\IdeaProjects\\Study\\src\\text2.txt")
+    if (!file.exists())println("파일을 확인 바랍니다.")
+    val scan: Scanner = Scanner(file)
+    val testcase: String? = scan.nextLine()
+    for (i in 0untilInteger.parseInt(testcase)) {
+        val str: String = scan.nextLine()
+solution(str)
+    }
+}
+
+fun arr_strtoint(str: String): Array<Int> {
+    val arr = str.split(" ")
+    val numStr = Array<Int>(3){0}
+val result = 0
+    for (i in arr.indices) {
+        numStr[i] = Integer.parseInt(arr[i])
+    }
+    return numStr
+}
+
+fun solution(str: String) {
+    val result: Int = 0
+    val arr =arr_strtoint(str)
+    val height: Int = arr[0]
+    val width: Int = arr[1]
+    var guest: Int = arr[2]
+    var cnt: Int = 1
+    while (true) {
+        if (guest > height) {
+            guest -= height
+            cnt++
+        } else {
+            if (cnt < 10) {
+println("${guest}0${cnt}")
+            } elseprintln("$guest$cnt")
+            break
+        }
+    }
+}

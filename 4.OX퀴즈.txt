@@ -1,0 +1,41 @@
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.*;
+
+public class Study {
+	public static void main(String[] args) {
+		try {
+			Scanner scanner = new Scanner(new File("C:\\Users\\HAYOUNG\\eclipse-workspace\\Study\\src\\text2.txt"));
+			String testcase = scanner.nextLine();
+			List<Object> Array = new ArrayList<Object>();
+			for (int i = 0; i < Integer.parseInt(testcase); ++i) {
+				String arr_OX = scanner.nextLine();
+				Array.add(check(arr_OX));
+			}
+			arr_print(Array);
+		} catch (FileNotFoundException e) {
+// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+
+	public static void arr_print(List<Object> arr) {
+		for(int i=0;i<arr.size();++i) {
+			System.out.println(arr.get(i));
+		}
+	}
+	public static int check(String str) {
+		int result=0;
+		int cnt = 0;
+		for(int i =0;i<str.length();++i) {
+			if(str.charAt(i)=='O') {
+				cnt +=1;
+				result += cnt;
+			}else
+				cnt = 0;
+		}
+		return result;
+	}
+	
+}
