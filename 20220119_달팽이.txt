@@ -1,3 +1,4 @@
+```kotlin
 import java.util.*
 import java.io.*
 
@@ -36,7 +37,7 @@ fun solution(str:String): Int {
     }
     return cnt
 }
-
+```
 // 2 1 5 -> split( 공백으로 자르기 ) -> 2, 1, 5
 // 2 1 5
 // 0+2 = 2 < 5 cnt=0+1=1
